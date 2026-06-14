@@ -2718,15 +2718,11 @@ function block_breakRoutineBegin(snapshot) {
         block_breakMaxDurationReached = false;
         // update component parameters for each repeat
         // Run 'Begin Routine' code from block_break_code
-        try {
-    if (blocksloop.thisN === (blocksloop.nTotal - 1)) {
-        continueRoutine = false;
-    } else {
-        block_break_text.setText("Вы выполнили 1/3 (или 2/3) эксперимента!\n\nПожалуйста, сделайте перерыв на 1–5 минут.\n\nЧерез одну минуту вы сможете продолжить выполнение задания.\n\nЕсли вам нужно больше времени, это нормально, но, пожалуйста, не делайте перерыв дольше 5 минут.");
-        break_text_changed = false;
-    }
-} catch(e) {
+if (blocksloop.thisN === (blocksloop.nTotal - 1)) {
     continueRoutine = false;
+} else {
+    block_break_text.setText("Вы выполнили 1/3 (или 2/3) эксперимента!\n\nПожалуйста, сделайте перерыв на 1–5 минут.\n\nЧерез одну минуту вы сможете продолжить выполнение задания.\n\nЕсли вам нужно больше времени, это нормально, но, пожалуйста, не делайте перерыв дольше 5 минут.");
+    break_text_changed = false;
 }
         block_break_key.keys = undefined;
         block_break_key.rt = undefined;
