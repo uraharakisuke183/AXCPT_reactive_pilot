@@ -5,10 +5,8 @@
 
 // store info about the experiment session:
 let expName = 'AXCPT_reactive';  // from the Builder filename that created this script
-let expInfo = {
-    'participant': '',
-    'session': '001',
-};
+const urlId = new URLSearchParams(window.location.search).get('id') || '';
+let expInfo = {'participant': urlId, 'session': '001'};
 let PILOTING = util.getUrlParameters().has('__pilotToken');
 
 // Start code blocks for 'Before Experiment'
@@ -20,7 +18,7 @@ const psychoJS = new PsychoJS({
 // open window:
 psychoJS.openWindow({
   fullscr: true,
-  color: new util.Color((0.6549, 0.6549, 0.6549)),
+  color: new util.Color([0.3, 0.3, 0.3]),
   units: 'height',
   waitBlanking: true,
   backgroundImage: '',
