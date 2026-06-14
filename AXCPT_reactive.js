@@ -26,7 +26,7 @@ const psychoJS = new PsychoJS({
 // open window:
 psychoJS.openWindow({
   fullscr: true,
-  color: new util.Color((0.3, 0.3, 0.3)),
+  color: new util.Color([0.3, 0.3, 0.3]),
   units: 'height',
   waitBlanking: true,
   backgroundImage: '',
