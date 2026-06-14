@@ -123,8 +123,8 @@ psychoJS.start({
     {'name': 'conditions/demo_trials/demo_AX.xlsx', 'path': 'conditions/demo_trials/demo_AX.xlsx'},
     {'name': 'conditions/demo_trials/demo_BX.xlsx', 'path': 'conditions/demo_trials/demo_BX.xlsx'},
     {'name': 'conditions/demo_trials/demo_nogo.xlsx', 'path': 'conditions/demo_trials/demo_nogo.xlsx'},
-    {'name': 'conditions/practice_trials_short.xlsx', 'path': 'conditions/practice_trials_short.xlsx'},
-    {'name': 'conditions/blocks_short.xlsx', 'path': 'conditions/blocks_short.xlsx'},
+    {'name': 'conditions/practice_trials.xlsx', 'path': 'conditions/practice_trials.xlsx'},
+    {'name': 'conditions/blocks.xlsx', 'path': 'conditions/blocks.xlsx'},
     {'name': 'conditions/main_trials.xlsx', 'path': 'conditions/main_trials.xlsx'},
     {'name': 'questionnare/questionnaire_loop.xlsx', 'path': 'questionnare/questionnaire_loop.xlsx'},
   ]
@@ -1220,7 +1220,7 @@ function practice_loopLoopBegin(practice_loopLoopScheduler, snapshot) {
       psychoJS: psychoJS,
       nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
       extraInfo: expInfo, originPath: undefined,
-      trialList: 'conditions/practice_trials_short.xlsx',
+      trialList: 'conditions/practice_trials.xlsx',
       seed: undefined, name: 'practice_loop'
     });
     psychoJS.experiment.addLoop(practice_loop); // add the loop to the experiment
@@ -1287,7 +1287,7 @@ function blocks_loopLoopBegin(blocks_loopLoopScheduler, snapshot) {
       psychoJS: psychoJS,
       nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
       extraInfo: expInfo, originPath: undefined,
-      trialList: 'conditions/blocks_short.xlsx',
+      trialList: 'conditions/blocks.xlsx',
       seed: undefined, name: 'blocks_loop'
     });
     psychoJS.experiment.addLoop(blocks_loop); // add the loop to the experiment
@@ -2768,13 +2768,13 @@ function block_breakRoutineEachFrame() {
         }
         
         // Run 'Each Frame' code from block_break_code
-        if ((t >= 2) && !break_text_changed) {
+        if ((t >= 60) && !break_text_changed) {
             block_break_text.setText("Минута прошла.\n\nНажмите ПРОБЕЛ, если готовы продолжить, либо отдохните ещё несколько минут (не более 5).");
             break_text_changed = true;
         }
         
         // *block_break_key* updates
-        if (t >= 2 && block_break_key.status === PsychoJS.Status.NOT_STARTED) {
+        if (t >= 60 && block_break_key.status === PsychoJS.Status.NOT_STARTED) {
           // keep track of start time/frame for later
           block_break_key.tStart = t;  // (not accounting for frame time here)
           block_break_key.frameNStart = frameN;  // exact frame index
