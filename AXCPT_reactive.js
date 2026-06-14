@@ -13,8 +13,11 @@ const { round } = util;
 
 // store info about the experiment session:
 let expName = 'AXCPT_reactive';  // from the Builder filename that created this script
-const urlId = new URLSearchParams(window.location.search).get('id') || '';
-let expInfo = {'participant': urlId, 'session': '001'};
+const _urlId = new URLSearchParams(window.location.search).get('id') || 'unknown';
+let expInfo = {
+    'participant': _urlId,
+    'session': '001',
+};
 let PILOTING = util.getUrlParameters().has('__pilotToken');
 
 // Start code blocks for 'Before Experiment'
@@ -2708,12 +2711,16 @@ function block_breakRoutineBegin(snapshot) {
         block_breakMaxDurationReached = false;
         // update component parameters for each repeat
         // Run 'Begin Routine' code from block_break_code
-        if (blocksloop.thisN === (blocksloop.nTotal - 1)) {
-            continueRoutine = false;
-        } else {
-            block_break_text.setText("Вы выполнили 1/3 (или 2/3) эксперимента!\n\nПожалуйста, сделайте перерыв на 1–5 минут.\n\nЧерез одну минуту вы сможете продолжить выполнение задания.\n\nЕсли вам нужно больше времени, это нормально, но, пожалуйста, не делайте перерыв дольше 5 минут.");
-            break_text_changed = false;
-        }
+        try {
+    if (blocksloop.thisN === (blocksloop.nTotal - 1)) {
+        continueRoutine = false;
+    } else {
+        block_break_text.setText("Вы выполнили 1/3 (или 2/3) эксперимента!\n\nПожалуйста, сделайте перерыв на 1–5 минут.\n\nЧерез одну минуту вы сможете продолжить выполнение задания.\n\nЕсли вам нужно больше времени, это нормально, но, пожалуйста, не делайте перерыв дольше 5 минут.");
+        break_text_changed = false;
+    }
+} catch(e) {
+    continueRoutine = false;
+}
         block_break_key.keys = undefined;
         block_break_key.rt = undefined;
         _block_break_key_allKeys = [];
