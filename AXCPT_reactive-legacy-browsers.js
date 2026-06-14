@@ -1307,6 +1307,12 @@ function blocks_loopLoopBegin(blocks_loopLoopScheduler, snapshot) {
       blocks_loopLoopScheduler.add(trials_loopLoopBegin(trials_loopLoopScheduler, snapshot));
       blocks_loopLoopScheduler.add(trials_loopLoopScheduler);
       blocks_loopLoopScheduler.add(trials_loopLoopEnd);
+      blocks_loopLoopScheduler.add(async function() {
+        if (!psychoJS.experiment.isEntryEmpty()) {
+            psychoJS.experiment.nextEntry(snapshot);
+        }
+        return Scheduler.Event.NEXT;
+      });
       blocks_loopLoopScheduler.add(block_breakRoutineBegin(snapshot));
       blocks_loopLoopScheduler.add(block_breakRoutineEachFrame());
       blocks_loopLoopScheduler.add(block_breakRoutineEnd(snapshot));
