@@ -1300,24 +1300,30 @@ function blocks_loopLoopBegin(blocks_loopLoopScheduler, snapshot) {
     psychoJS.experiment.addLoop(blocks_loop); // add the loop to the experiment
     currentLoop = blocks_loop;  // we're now the current loop
     
-    // Schedule all the trials in the trialList:
-    for (const thisBlocks_loop of blocks_loop) {
+// Schedule all the trials in the trialList:
+    blocks_loop.forEach(function() {
       snapshot = blocks_loop.getSnapshot();
+    
       blocks_loopLoopScheduler.add(importConditions(snapshot));
       const trials_loopLoopScheduler = new Scheduler(psychoJS);
       blocks_loopLoopScheduler.add(trials_loopLoopBegin(trials_loopLoopScheduler, snapshot));
       blocks_loopLoopScheduler.add(trials_loopLoopScheduler);
       blocks_loopLoopScheduler.add(trials_loopLoopEnd);
+      blocks_loopLoopScheduler.add(async function() {
+        if (!psychoJS.experiment.isEntryEmpty()) {
+            psychoJS.experiment.nextEntry(snapshot);
+        }
+        return Scheduler.Event.NEXT;
+      });
       blocks_loopLoopScheduler.add(block_breakRoutineBegin(snapshot));
       blocks_loopLoopScheduler.add(block_breakRoutineEachFrame());
       blocks_loopLoopScheduler.add(block_breakRoutineEnd(snapshot));
       blocks_loopLoopScheduler.add(blocks_loopLoopEndIteration(blocks_loopLoopScheduler, snapshot));
-    }
+    });
     
     return Scheduler.Event.NEXT;
   }
 }
-
 
 var trials_loop;
 function trials_loopLoopBegin(trials_loopLoopScheduler, snapshot) {
