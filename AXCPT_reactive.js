@@ -1675,14 +1675,14 @@ function trialRoutineEachFrame() {
       psychoJS.window.callOnFlip(function() { cue_key_resp.start(); }); // start on screen flip
       psychoJS.window.callOnFlip(function() { cue_key_resp.clearEvents(); });
     }
-    frameRemains = 0.0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+    frameRemains = 0.0 + 1.5 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
     if (cue_key_resp.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       // keep track of stop time/frame for later
       cue_key_resp.tStop = t;  // not accounting for scr refresh
       cue_key_resp.frameNStop = frameN;  // exact frame index
       // update status
       cue_key_resp.status = PsychoJS.Status.FINISHED;
-      frameRemains = 0.0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
+      frameRemains = 0.0 + 1.5 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
       if (cue_key_resp.status === PsychoJS.Status.STARTED && t >= frameRemains) {
         // keep track of stop time/frame for later
         cue_key_resp.tStop = t;  // not accounting for scr refresh
